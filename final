@@ -1,0 +1,50 @@
+// Crear un juego de adivinar el numero
+System.Random random = new Random();
+
+int numAdivinado = 0;
+int vidas = 0;
+
+string[] barra = new string[] {
+    "[     ]",
+    "[=    ]",
+    "[==   ]",
+    "[===  ]",
+    "[==== ]",
+    "[=====]"
+};
+string mensajeFalla = "";
+
+while (true)
+{
+    var numParaAdivinar = random.Next(1, 10);
+    Console.WriteLine($"Bienvenido a ADIVINA EL NUMERO \n" +
+        $"Instrucciones: Debes adivinar el numero entre 1 y 10. " +
+        $"Tienes solo 5 oportunidades. Suerte \n" +
+        $"Vidas: [=====] \n" +
+        $"Teclea un numero para empezar a adivinar. \n");
+    vidas = 5;
+
+    for (int i = 0; i < 5; i++)
+    {
+        numAdivinado = Convert.ToInt32(Console.ReadLine());
+        mensajeFalla = $"El numero {numAdivinado} no es el numero correcto." +
+            $"Te quedan {vidas - 1} vidas" +
+            $"{barra[vidas - 1]}";
+        if (numAdivinado == numParaAdivinar)
+        {
+            Console.WriteLine("Adivinaste el numero, Felicidades!! \n\n\n");
+            break;
+        }
+        else
+        {
+            Console.WriteLine(mensajeFalla);
+            vidas--;
+        }
+        if (vidas == 0)
+        {
+            Console.WriteLine("Has Perdido. Vuelve a intentarlo!!\n" +
+                "=================================================\n\n\n");
+        }
+    }
+
+} 
